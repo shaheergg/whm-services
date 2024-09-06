@@ -93,7 +93,7 @@ class WhmApiService
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-
+    // getting servers disk usage
     public function getDiskUsage()
     {
         try {
