@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EdisController;
 use App\Http\Controllers\KvmController;
+use App\Http\Controllers\OneProviderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServerController;
@@ -42,3 +43,8 @@ Route::get("/kvms/{id}/images", [KvmController::class, "getImages"]);
 Route::post("/kvm/{id}/reinstall", [KvmController::class, "reinstallKvm"]);
 
 
+// oneprovider 
+
+Route::get("/oneprovider/servers", [OneProviderController::class, "index"]);
+Route::get("/oneprovider/servers/{id}", [OneProviderController::class, "show"]);
+Route::get("/oneprovider/servers/{id}/manage", [OneProviderController::class, "manageServer"]);
