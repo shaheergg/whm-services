@@ -3,6 +3,7 @@
 use App\Http\Controllers\EdisController;
 use App\Http\Controllers\KvmController;
 use App\Http\Controllers\OneProviderController;
+use App\Http\Controllers\PleskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServerController;
@@ -48,3 +49,10 @@ Route::post("/kvm/{id}/reinstall", [KvmController::class, "reinstallKvm"]);
 Route::get("/oneprovider/servers", [OneProviderController::class, "index"]);
 Route::get("/oneprovider/servers/{id}", [OneProviderController::class, "show"]);
 Route::get("/oneprovider/servers/{id}/manage", [OneProviderController::class, "manageServer"]);
+Route::post("/oneprovider/servers/{id}/poweroff", [OneProviderController::class, "powerOffVM"]);
+
+
+// Plesk
+Route::get("/plesk/server", [PleskController::class, "getServerInfo"]);
+Route::get("/plesk/clients", [PleskController::class, "listClients"]);
+Route::get("/plesk/domains", [PleskController::class, "listDomains"]);

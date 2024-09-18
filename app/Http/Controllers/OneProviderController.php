@@ -83,6 +83,20 @@ class OneProviderController extends Controller
             ]);
         }
     }
+
+    public function powerOffVM($id)
+    {
+        try {
+            $oneProvider = new OneProviderService();
+            $data = $oneProvider->powerOff($id);
+            return response()->json($data);
+        } catch (\Exception $error) {
+            return response()->json([
+                "message" => $error->getMessage(),
+                "code" => 500
+            ]);
+        }
+    }
     /**
      * Remove the specified resource from storage.
      */

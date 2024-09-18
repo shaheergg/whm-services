@@ -68,4 +68,22 @@ class OneProviderService
 
         throw new \Exception($response);
     }
+
+    public function powerOff(int $server_id)
+    {
+        $response = Http::withHeaders([
+            [
+                "Api-Key" => $this->apiKey,
+                "Client-Key" => $this->clientSecret,
+                "X-Pretty-JSON" => "1",
+                "vm_id" => $server_id
+            ],
+        ])->post("{$this->baseUrl}/vm/poweroff");
+
+        if ($response->successful()) {
+            return $response->json();
+        }
+
+        throw new \Exception($response);
+    }
 }
