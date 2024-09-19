@@ -61,9 +61,39 @@ class PleskController extends Controller
             ]);
         }
     }
+
+    public function listDNSRecords(Request $request)
+    {
+        try {
+            $domain = $request->query("domain");
+            $pleskService = new PleskApiService();
+            $data = $pleskService->listDNSRecords($domain);
+            return response()->json($data);
+        } catch (\Exception $error) {
+            return response()->json(
+                [
+                    "error" => $error->getMessage(),
+                    "code" => $error->getCode()
+                ]
+            );
+        }
+    }
     /**
      * Display the specified resource.
      */
+    public function listExtensions(Request $request)
+    {
+        try {
+            $pleskApiService = new PleskApiService();
+            $data = $pleskApiService->listExtensions();
+            return response()->json($data);
+        } catch (\Exception $error) {
+            return response()->json([
+                "error" => $error->getMessage(),
+                "code" => $error->getCode()
+            ]);
+        }
+    }
     public function show(string $id)
     {
         //

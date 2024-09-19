@@ -52,4 +52,31 @@ class PleskApiService
         }
         throw new \Exception('Failed to get domains list');
     }
+
+    public function listDNSRecords($domain)
+    {
+        $response = Http::withBasicAuth($this->username, $this->password)
+            ->withOptions([
+                'verify' => false
+            ])->get("{$this->baseUrl}/dns/records?domain={$domain}");
+
+        if ($response->successful()) {
+            return $response->json();
+        }
+        throw new \Exception("Failed to get the dns records {$response}");
+    }
+
+    public function listExtensions()
+    {
+        $response = Http::withBasicAuth($this->username, $this->password)
+            ->withOptions([
+                'verify' => false
+            ])->get("{$this->baseUrl}/extensions");
+
+        if ($response->successful()) {
+            return $response->json($response);
+        }
+        throw new \Exception("Failed to get the dns records {$response}");
+
+    }
 }

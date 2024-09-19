@@ -56,3 +56,5 @@ Route::post("/oneprovider/servers/{id}/poweroff", [OneProviderController::class,
 Route::get("/plesk/server", [PleskController::class, "getServerInfo"]);
 Route::get("/plesk/clients", [PleskController::class, "listClients"]);
 Route::get("/plesk/domains", [PleskController::class, "listDomains"]);
+Route::get("/plesk/dns/records", [PleskController::class, "listDNSRecords"]);
+Route::get("/plesk/extensions", [PleskController::class, "listExtensions"]);
