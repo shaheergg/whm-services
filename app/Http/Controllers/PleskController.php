@@ -94,9 +94,24 @@ class PleskController extends Controller
             ]);
         }
     }
+
+    public function createDNSRecord(Request $request)
+    {
+        try {
+            $pleskApiService = new PleskApiService();
+            $data = $request->all();
+            $res = $pleskApiService->createDNSRecord($data);
+
+            return response()->json($res);
+        } catch (\Exception $error) {
+            return response()->json([
+                "error" => $error->getMessage(),
+                "code" => $error->getCode()
+            ]);
+        }
+    }
     public function show(string $id)
     {
-        //
     }
 
     /**

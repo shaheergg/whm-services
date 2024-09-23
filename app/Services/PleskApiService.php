@@ -79,4 +79,27 @@ class PleskApiService
         throw new \Exception("Failed to get the dns records {$response}");
 
     }
+
+    public function createDNSRecord($data)
+    {
+        $body = [
+            "type" => $data['type'],
+            "host" => $data['host'],
+            "value" => $data['value'],
+            "opt" => $data['opt'],
+            "ttl" => $data['ttl'],
+        ];
+        $response = Http::withBasicAuth($this->username, $this->password)
+            ->withOptions([
+                'verify' => false,
+            ])
+            ->post("{$this->baseUrl}/dns/records?domain={$data['domain']}", [
+                "body" => $body
+            ]);
+
+        if ($response->successful()) {
+            return $response->json($response);
+        }
+        throw new \Exception($response["message"]);
+    }
 }
